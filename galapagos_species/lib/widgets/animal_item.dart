@@ -9,7 +9,6 @@ class AnimalItem extends StatelessWidget {
   final String description;
   final String scintificName;
   final Status status;
-  final Function removeItem;
 
   AnimalItem({
     @required this.id,
@@ -18,7 +17,6 @@ class AnimalItem extends StatelessWidget {
     @required this.description,
     @required this.status,
     @required this.scintificName,
-    @required this.removeItem,
   });
 
   void selectedAnimal(BuildContext context) {
@@ -29,7 +27,7 @@ class AnimalItem extends StatelessWidget {
     )
         .then((result) {
       if (result != null) {
-        removeItem(result);
+        // removeItem(result);
       }
     });
   }

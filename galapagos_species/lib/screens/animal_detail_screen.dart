@@ -3,6 +3,10 @@ import '../dummy_data.dart';
 
 class AnimalDetailScreen extends StatelessWidget {
   static const routeName = './animal-detail';
+  final Function toggleFavorite;
+  final Function isFavorite;
+
+  AnimalDetailScreen(this.toggleFavorite, this.isFavorite);
 
 //widget of the titles of the cards
   Widget buildSectionTitle(BuildContext context, String text) {
@@ -90,11 +94,10 @@ class AnimalDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.delete,
+          //check if the id (animal) has been selected true or false
+          isFavorite(routeArgId) ? Icons.favorite : Icons.favorite_border,
         ),
-        onPressed: () {
-          Navigator.of(context).pop(routeArgId);
-        },
+        onPressed: () => toggleFavorite(routeArgId),
       ),
     );
   }

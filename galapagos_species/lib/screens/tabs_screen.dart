@@ -21,7 +21,8 @@ class _TabScreenState extends State<TabScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    // included in initState because widget option is not available if the list is not initialazed
+    // included in initState because widget or any property
+    // option is not available if the list is not compleatly initialazed
     _pages = [
       CategoriesScreen(),
       FavoritesScreen(widget.favoriteAnimals),

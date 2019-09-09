@@ -43,6 +43,29 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+//favorite toggle
+  void _toggleFavorite(String animalId) {
+    final existingIndex =
+        _favoriteAnimals.indexWhere((animal) => animal.id == animalId);
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteAnimals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteAnimals.add(
+          ANIMAL_DATA.firstWhere((animal) => animal.id == animalId),
+        );
+      });
+    }
+  }
+
+//favorite checker for eavery animal
+  bool _isAnimalFavorite(String id) {
+    return _favoriteAnimals.any((animal) => animal.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -69,7 +92,8 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => TabScreen(_favoriteAnimals),
         CategoryIslandScreen.routeName: (context) =>
             CategoryIslandScreen(_availableAnimal),
-        AnimalDetailScreen.routeName: (context) => AnimalDetailScreen(),
+        AnimalDetailScreen.routeName: (context) =>
+            AnimalDetailScreen(_toggleFavorite, _isAnimalFavorite),
         FilterScreen.routeName: (context) =>
             FilterScreen(_filters, _setFilters),
       },

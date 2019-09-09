@@ -39,12 +39,12 @@ class _CategoryIslandScreenState extends State<CategoryIslandScreen> {
     super.didChangeDependencies();
   }
 
-  void _removeAnimal(String animalId) {
-    setState(() {
-      displayedAnimals.removeWhere(
-          (animal) => animal.id == animalId); //delete animal removed
-    });
-  }
+  // void _removeAnimal(String animalId) {
+  //   setState(() {
+  //     displayedAnimals.removeWhere(
+  //         (animal) => animal.id == animalId); //delete animal removed
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,6 @@ class _CategoryIslandScreenState extends State<CategoryIslandScreen> {
             description: displayedAnimals[index].description,
             status: displayedAnimals[index].status,
             scintificName: displayedAnimals[index].scintificName,
-            removeItem: _removeAnimal,
           );
         },
         itemCount: displayedAnimals.length,
