@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import '../dummy_data.dart';
 import '../widgets/animal_item.dart';
 import '../models/animal.dart';
 
 class CategoryIslandScreen extends StatefulWidget {
   //route variable name
   static const routeName = '/categories-island';
+
+  final List<Animal> availableAnimal;
+
+  CategoryIslandScreen(this.availableAnimal);
 
   @override
   _CategoryIslandScreenState createState() => _CategoryIslandScreenState();
@@ -27,7 +30,7 @@ class _CategoryIslandScreenState extends State<CategoryIslandScreen> {
       categoryTitle = routeArgs['title'];
       final categoryId = routeArgs['id'];
       //conect island id with animal categories id
-      displayedAnimals = ANIMAL_DATA.where((animal) {
+      displayedAnimals = widget.availableAnimal.where((animal) {
         return animal.categories.contains(categoryId);
       }).toList();
       _loadedInitData = true;

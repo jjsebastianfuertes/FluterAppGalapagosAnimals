@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
+import '../models/animal.dart';
 import 'package:galapagos_species/screens/favorites_screen.dart';
 import 'package:galapagos_species/screens/island_screen.dart';
 import 'package:galapagos_species/widgets/main_drawer.dart';
 
 class TabScreen extends StatefulWidget {
+  //list create in main.dart
+  final List<Animal> favoriteAnimals;
+  TabScreen(this.favoriteAnimals);
+
   @override
   _TabScreenState createState() => _TabScreenState();
 }
 
 class _TabScreenState extends State<TabScreen> {
-  final List<Widget> _pages = [
-    CategoriesScreen(),
-    FavoritesScreen(),
-  ];
+  List<Widget> _pages;
 
   int _selectedPageIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    // included in initState because widget option is not available if the list is not initialazed
+    _pages = [
+      CategoriesScreen(),
+      FavoritesScreen(widget.favoriteAnimals),
+    ];
+    super.initState();
+  }
 
   void _selectPage(int index) {
     setState(() {

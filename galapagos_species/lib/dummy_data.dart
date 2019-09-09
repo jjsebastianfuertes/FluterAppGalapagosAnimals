@@ -55,7 +55,7 @@ const ANIMAL_DATA = const [
     predators: ['None'],
     status: Status.Vulnerable,
     isEndemic: true,
-    isMarine: false,
+    isMarine: true,
     isSummer: true,
   ),
 ];

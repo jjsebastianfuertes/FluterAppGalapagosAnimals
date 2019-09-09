@@ -3,6 +3,10 @@ import 'package:galapagos_species/widgets/main_drawer.dart';
 
 class FilterScreen extends StatefulWidget {
   static const routeName = '/filters';
+  final Function saveFilters;
+  final Map<String, bool> currentFilters;
+
+  FilterScreen(this.currentFilters, this.saveFilters);
 
   @override
   _FilterScreenState createState() => _FilterScreenState();
@@ -13,6 +17,15 @@ class _FilterScreenState extends State<FilterScreen> {
   var _isEndemic = false;
   var _isMarine = false;
   var _isSummer = false;
+
+  @override
+  initState() {
+    _isEndemic = widget.currentFilters['endemic'];
+    _isMarine = widget.currentFilters['marine'];
+    _isSummer = widget.currentFilters['summer'];
+
+    super.initState();
+  }
 
   Widget _buildSwitchListTitle(
     String title,
@@ -33,6 +46,19 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              final selectedFilter = {
+                'endemic': _isEndemic,
+                'marine': _isMarine,
+                'summer': _isSummer,
+              };
+              widget.saveFilters(selectedFilter);
+            },
+          ),
+        ],
       ),
       drawer: MainDrawer(),
       body: Column(

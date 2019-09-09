@@ -1,14 +1,48 @@
 import 'package:flutter/material.dart';
+import './dummy_data.dart';
 import 'package:galapagos_species/screens/animal_screen.dart';
 import 'package:galapagos_species/screens/filter_screen.dart';
 import 'package:galapagos_species/screens/tabs_screen.dart';
 import './screens/island_screen.dart';
 import './screens/animal_detail_screen.dart';
+import './models/animal.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'endemic': false,
+    'marine': false,
+    'summer': false,
+  };
+
+  List<Animal> _availableAnimal = ANIMAL_DATA;
+  List<Animal> _favoriteAnimals = [];
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _availableAnimal = ANIMAL_DATA.where((animal) {
+        if (_filters['endemic'] && !animal.isEndemic) {
+          return false;
+        }
+        if (_filters['marine'] && !animal.isMarine) {
+          return false;
+        }
+        if (_filters['summer'] && !animal.isSummer) {
+          return false;
+        }
+        return true; //if filters do not match return everything true
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,10 +66,12 @@ class MyApp extends StatelessWidget {
       ),
       // home: CategoriesScreen(),
       routes: {
-        '/': (context) => TabScreen(),
-        CategoryIslandScreen.routeName: (context) => CategoryIslandScreen(),
+        '/': (context) => TabScreen(_favoriteAnimals),
+        CategoryIslandScreen.routeName: (context) =>
+            CategoryIslandScreen(_availableAnimal),
         AnimalDetailScreen.routeName: (context) => AnimalDetailScreen(),
-        FilterScreen.routeName: (context) => FilterScreen(),
+        FilterScreen.routeName: (context) =>
+            FilterScreen(_filters, _setFilters),
       },
       //when the route choose has not been defined
       onUnknownRoute: (settings) {
