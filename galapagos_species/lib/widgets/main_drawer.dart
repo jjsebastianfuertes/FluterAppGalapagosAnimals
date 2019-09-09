@@ -44,7 +44,7 @@ class MainDrawer extends StatelessWidget {
             Navigator.of(context).pushReplacementNamed(
                 '/'); //pushReplacementName put a new page, not put it over
           }),
-          buildListTitle('Settings', Icons.settings, () {
+          buildListTitle('Filters', Icons.settings, () {
             Navigator.of(context).pushReplacementNamed(FilterScreen.routeName);
           }),
         ],
