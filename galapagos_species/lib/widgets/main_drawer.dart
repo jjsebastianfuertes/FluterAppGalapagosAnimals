@@ -32,7 +32,7 @@ class MainDrawer extends StatelessWidget {
             padding: EdgeInsets.only(top: 30, left: 30),
             alignment: Alignment.centerLeft, //aligns the child of the container
             child: Text(
-              'Animales',
+              'Galapagos',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 30,
@@ -40,7 +40,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-          buildListTitle('Animales', Icons.nature, () {
+          buildListTitle('Islands', Icons.nature, () {
             Navigator.of(context).pushReplacementNamed(
                 '/'); //pushReplacementName put a new page, not put it over
           }),

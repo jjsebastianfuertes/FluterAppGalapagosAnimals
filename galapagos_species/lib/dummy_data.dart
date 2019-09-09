@@ -1,27 +1,29 @@
-import 'package:flutter/material.dart';
 import './models/animal.dart';
 import './models/category.dart';
 
 const ISLAND_CATEGORIES = const [
   Category(
     id: 'c1',
-    title: 'Santa Cruz',
-    color: Colors.purple,
+    title: 'Floreana',
+    imageUrl: 'https://www.cruisemapper.com/images/ports/2314-1187b2a70c5.jpg',
   ),
   Category(
     id: 'c2',
-    title: 'San Cristobal',
-    color: Colors.red,
+    title: 'Isabela',
+    imageUrl:
+        'https://playasonline.ec/wp-content/uploads/2019/04/isla-isabela-los-tuneles-galapagos.jpg',
   ),
   Category(
     id: 'c3',
-    title: 'Isabela',
-    color: Colors.orange,
+    title: 'San Cristobal',
+    imageUrl:
+        'https://naturegalapagos.com/wp-content/uploads/2017/02/san-cristobal-galapagos-package-tour-1140x530.jpg',
   ),
   Category(
     id: 'c4',
-    title: 'Floreana',
-    color: Colors.amber,
+    title: 'Santa Cruz',
+    imageUrl:
+        'https://i0.wp.com/www.drinkteatravel.com/wp-content/uploads/Ecuador-Galapagos-Santa-Cruz-0190.jpg?fit=1400%2C786&ssl=1',
   ),
 ];
 

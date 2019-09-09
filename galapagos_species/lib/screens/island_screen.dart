@@ -10,11 +10,12 @@ class CategoriesScreen extends StatelessWidget {
       children: ISLAND_CATEGORIES
           .map(
             (categoryData) => CategoryItem(
-                categoryData.id, categoryData.title, categoryData.color),
+                categoryData.id, categoryData.title, categoryData.imageUrl),
           )
           .toList(),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200, // width of the grid
+          maxCrossAxisExtent:
+              MediaQuery.of(context).size.width, // width of the grid
           childAspectRatio: 3 / 2, //aspect boxes height related to width
           crossAxisSpacing: 7, //space between boxes x axis
           mainAxisSpacing: 7), //space between boxes y axis
